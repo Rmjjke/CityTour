@@ -1,7 +1,7 @@
 import Foundation
 
-/// Настройте здесь ваш API-ключ OpenAI.
-/// Получить ключ можно на https://platform.openai.com/api-keys
+/// Настройте здесь ваш API-ключ Claude.
+/// Получить ключ можно на https://console.anthropic.com
 enum APIConfig {
-    static let openAIKey: String = ""
+    static let claudeAPIKey: String = ""
 }

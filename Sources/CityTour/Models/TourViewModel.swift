@@ -10,7 +10,7 @@ final class TourViewModel {
     var errorMessage: String?
     var showResult = false
 
-    private let service = OpenAIService()
+    private let service = ClaudeService()
 
     func generateTour() async {
         isLoading = true

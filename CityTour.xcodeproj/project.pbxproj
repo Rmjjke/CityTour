@@ -15,7 +15,7 @@
 		504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44FFDBEC97D84BA60CA8F1C /* TourResultView.swift */; };
 		510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0535D6AD4BE274962EE40B59 /* TourSettings.swift */; };
 		69E196A22A353829AE3E4566 /* CityTourUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86864D505B90536630599EFC /* CityTourUITests.swift */; };
-		7F82B9E86668AE61F5C9252D /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA284348EE05F36B55D525F /* OpenAIService.swift */; };
+		734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE5F725A97002E31C3137A /* ClaudeService.swift */; };
 		AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */; };
 		D897810417C565C326971FAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE53C81147EBC37CF4B86ADC /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -33,10 +33,10 @@
 /* Begin PBXFileReference section */
 		0535D6AD4BE274962EE40B59 /* TourSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettings.swift; sourceTree = "<group>"; };
 		1D9F934FBE56F818E31C60D6 /* TourSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettingsView.swift; sourceTree = "<group>"; };
+		23FE5F725A97002E31C3137A /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
 		40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourApp.swift; sourceTree = "<group>"; };
 		52D0C22303B0A6A93885456B /* CityTour.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CityTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570168D0462BF491CA793441 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6CA284348EE05F36B55D525F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		7C18D6069E05F74C37AF02CD /* CityTourUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CityTourUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86864D505B90536630599EFC /* CityTourUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourUITests.swift; sourceTree = "<group>"; };
 		9C9E90B9545DC916B5643A34 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9E90B9545DC916B5643A34 /* APIConfig.swift */,
-				6CA284348EE05F36B55D525F /* OpenAIService.swift */,
+				23FE5F725A97002E31C3137A /* ClaudeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 			files = (
 				08D5F179B7F2C8EE55F5BD1D /* APIConfig.swift in Sources */,
 				AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */,
+				734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */,
 				4AC55DF4D5D011943CFF2EA6 /* ContentView.swift in Sources */,
-				7F82B9E86668AE61F5C9252D /* OpenAIService.swift in Sources */,
 				504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */,
 				510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */,
 				04D6E2652580CF0FCE797CEE /* TourSettingsView.swift in Sources */,
