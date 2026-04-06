@@ -28,7 +28,13 @@ actor ClaudeService {
 
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let session = URLSession(configuration: {
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 120
+            config.timeoutIntervalForResource = 120
+            return config
+        }())
+        let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw ClaudeError.invalidResponse

@@ -48,9 +48,9 @@ final class CityTourUITests: XCTestCase {
         attach3.lifetime = .keepAlways
         add(attach3)
 
-        // 4. Wait for result (up to 60 seconds for API call)
-        let resultTitle = app.staticTexts["Ваш маршрут"]
-        let appeared = resultTitle.waitForExistence(timeout: 60)
+        // 4. Wait for result (up to 120 seconds for API call)
+        let resultNavBar = app.navigationBars["Ваш маршрут"]
+        let appeared = resultNavBar.waitForExistence(timeout: 120)
 
         // Screenshot: result
         let screenshot4 = app.screenshot()
