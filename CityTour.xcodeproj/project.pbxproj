@@ -14,18 +14,31 @@
 		4C86BCD5B1B56578C263449B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570168D0462BF491CA793441 /* Preview Assets.xcassets */; };
 		504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44FFDBEC97D84BA60CA8F1C /* TourResultView.swift */; };
 		510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0535D6AD4BE274962EE40B59 /* TourSettings.swift */; };
-		734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE5F725A97002E31C3137A /* ClaudeService.swift */; };
+		69E196A22A353829AE3E4566 /* CityTourUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86864D505B90536630599EFC /* CityTourUITests.swift */; };
+		7F82B9E86668AE61F5C9252D /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA284348EE05F36B55D525F /* OpenAIService.swift */; };
 		AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */; };
 		D897810417C565C326971FAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE53C81147EBC37CF4B86ADC /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7101707D5921FA9016306F01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4CAB6D04F92E38FCF8D2734 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B6A10B487C25C87F3192B28;
+			remoteInfo = CityTour;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0535D6AD4BE274962EE40B59 /* TourSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettings.swift; sourceTree = "<group>"; };
 		1D9F934FBE56F818E31C60D6 /* TourSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettingsView.swift; sourceTree = "<group>"; };
-		23FE5F725A97002E31C3137A /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
 		40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourApp.swift; sourceTree = "<group>"; };
 		52D0C22303B0A6A93885456B /* CityTour.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CityTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570168D0462BF491CA793441 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6CA284348EE05F36B55D525F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		7C18D6069E05F74C37AF02CD /* CityTourUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CityTourUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		86864D505B90536630599EFC /* CityTourUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourUITests.swift; sourceTree = "<group>"; };
 		9C9E90B9545DC916B5643A34 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		AFCF38AE924D3C22CAE7862C /* TourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourViewModel.swift; sourceTree = "<group>"; };
 		B7EB7D9F062F691EC8F2EEEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -67,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9E90B9545DC916B5643A34 /* APIConfig.swift */,
-				23FE5F725A97002E31C3137A /* ClaudeService.swift */,
+				6CA284348EE05F36B55D525F /* OpenAIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -76,14 +89,24 @@
 			isa = PBXGroup;
 			children = (
 				52D0C22303B0A6A93885456B /* CityTour.app */,
+				7C18D6069E05F74C37AF02CD /* CityTourUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9301C05D0151454491E94BF5 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				86864D505B90536630599EFC /* CityTourUITests.swift */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		AD739CF141EF2A49539A88D0 = {
 			isa = PBXGroup;
 			children = (
 				FFC77C698FA7EC74F3540BB4 /* CityTour */,
+				9301C05D0151454491E94BF5 /* UITests */,
 				788E18EC56736584932204D6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,6 +154,24 @@
 			productReference = 52D0C22303B0A6A93885456B /* CityTour.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B19F5481DA953DCF9785E1AE /* CityTourUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC7897921514435553232571 /* Build configuration list for PBXNativeTarget "CityTourUITests" */;
+			buildPhases = (
+				9828066C3B2B811F2AE4C564 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8776170419D205A19F682613 /* PBXTargetDependency */,
+			);
+			name = CityTourUITests;
+			packageProductDependencies = (
+			);
+			productName = CityTourUITests;
+			productReference = 7C18D6069E05F74C37AF02CD /* CityTourUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -140,6 +181,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					B19F5481DA953DCF9785E1AE = {
+						TestTargetID = 5B6A10B487C25C87F3192B28;
+					};
 				};
 			};
 			buildConfigurationList = 9101E07F594796C8508BF7B0 /* Build configuration list for PBXProject "CityTour" */;
@@ -157,6 +201,7 @@
 			projectRoot = "";
 			targets = (
 				5B6A10B487C25C87F3192B28 /* CityTour */,
+				B19F5481DA953DCF9785E1AE /* CityTourUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -180,8 +225,8 @@
 			files = (
 				08D5F179B7F2C8EE55F5BD1D /* APIConfig.swift in Sources */,
 				AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */,
-				734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */,
 				4AC55DF4D5D011943CFF2EA6 /* ContentView.swift in Sources */,
+				7F82B9E86668AE61F5C9252D /* OpenAIService.swift in Sources */,
 				504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */,
 				510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */,
 				04D6E2652580CF0FCE797CEE /* TourSettingsView.swift in Sources */,
@@ -189,7 +234,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9828066C3B2B811F2AE4C564 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69E196A22A353829AE3E4566 /* CityTourUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8776170419D205A19F682613 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B6A10B487C25C87F3192B28 /* CityTour */;
+			targetProxy = 7101707D5921FA9016306F01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		41DC87688A5C85307F0B4489 /* Debug */ = {
@@ -268,6 +329,24 @@
 			};
 			name = Release;
 		};
+		9A2865E604E37D1B55B639AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rmjjke.CityTourUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CityTour;
+			};
+			name = Debug;
+		};
 		A3AF0CE6CAECA3C024790669 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -282,6 +361,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rmjjke.CityTour;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B71E25F5255E2110A4B34BAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rmjjke.CityTourUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CityTour;
 			};
 			name = Release;
 		};
@@ -359,6 +456,15 @@
 			buildConfigurations = (
 				D0E64138F758B18F9A859D84 /* Debug */,
 				8FCE3955FB9DB3FF03372CD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DC7897921514435553232571 /* Build configuration list for PBXNativeTarget "CityTourUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2865E604E37D1B55B639AD /* Debug */,
+				B71E25F5255E2110A4B34BAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

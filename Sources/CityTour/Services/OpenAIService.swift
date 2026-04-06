@@ -1,13 +1,13 @@
 import Foundation
 
-actor ClaudeService {
-    private let apiURL = URL(string: "https://api.anthropic.com/v1/messages")!
-    private let model = "claude-opus-4-6"
+actor OpenAIService {
+    private let apiURL = URL(string: "https://api.openai.com/v1/chat/completions")!
+    private let model = "gpt-4o"
 
     func generateTour(settings: TourSettings) async throws -> String {
-        let apiKey = APIConfig.claudeAPIKey
+        let apiKey = APIConfig.openAIKey
         guard !apiKey.isEmpty else {
-            throw ClaudeError.missingAPIKey
+            throw OpenAIError.missingAPIKey
         }
 
         let prompt = buildPrompt(settings: settings)
@@ -15,8 +15,7 @@ actor ClaudeService {
         var request = URLRequest(url: apiURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
-        request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
 
         let body: [String: Any] = [
             "model": model,
@@ -31,20 +30,20 @@ actor ClaudeService {
         let (data, response) = try await URLSession.shared.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw ClaudeError.invalidResponse
+            throw OpenAIError.invalidResponse
         }
 
         guard httpResponse.statusCode == 200 else {
             let errorBody = String(data: data, encoding: .utf8) ?? "Unknown error"
-            throw ClaudeError.apiError(statusCode: httpResponse.statusCode, message: errorBody)
+            throw OpenAIError.apiError(statusCode: httpResponse.statusCode, message: errorBody)
         }
 
-        let decoded = try JSONDecoder().decode(ClaudeResponse.self, from: data)
-        return decoded.content.first?.text ?? ""
+        let decoded = try JSONDecoder().decode(OpenAIResponse.self, from: data)
+        return decoded.choices.first?.message.content ?? ""
     }
 
     private func buildPrompt(settings: TourSettings) -> String {
-        var prompt = """
+        """
         Ты — опытный гид и составитель маршрутов. Создай подробный туристический маршрут по городу \(settings.city).
 
         Параметры тура:
@@ -69,12 +68,10 @@ actor ClaudeService {
         Учитывай, что передвижение \(settings.transport == .walking ? "пешком, выбирай компактный маршрут" : "на авто, можно охватить больше площадь города").
         \(settings.withChildren ? "Учитывай интересы детей: интерактивные места, парки, не слишком длинные переходы." : "")
         """
-
-        return prompt
     }
 }
 
-enum ClaudeError: LocalizedError {
+enum OpenAIError: LocalizedError {
     case missingAPIKey
     case invalidResponse
     case apiError(statusCode: Int, message: String)
@@ -82,7 +79,7 @@ enum ClaudeError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .missingAPIKey:
-            return "API-ключ не настроен. Добавьте ключ Claude в APIConfig.swift"
+            return "API-ключ не настроен. Добавьте ключ OpenAI в APIConfig.swift"
         case .invalidResponse:
             return "Некорректный ответ от сервера"
         case .apiError(let code, let message):
@@ -91,10 +88,14 @@ enum ClaudeError: LocalizedError {
     }
 }
 
-struct ClaudeResponse: Decodable {
-    let content: [ContentBlock]
+struct OpenAIResponse: Decodable {
+    let choices: [Choice]
 
-    struct ContentBlock: Decodable {
-        let text: String
+    struct Choice: Decodable {
+        let message: Message
+    }
+
+    struct Message: Decodable {
+        let content: String
     }
 }
