@@ -2,6 +2,7 @@ import SwiftUI
 import Observation
 
 @Observable
+@MainActor
 final class TourViewModel {
     var settings = TourSettings()
     var generatedTour: String = ""
