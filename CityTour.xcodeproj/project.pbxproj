@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02AEB5F744D85D2070383A23 /* GeneratedTour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD823708CA0D1D5AB23C8B5 /* GeneratedTour.swift */; };
 		04D6E2652580CF0FCE797CEE /* TourSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F934FBE56F818E31C60D6 /* TourSettingsView.swift */; };
 		08D5F179B7F2C8EE55F5BD1D /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E90B9545DC916B5643A34 /* APIConfig.swift */; };
+		3D8C6985D18C849ABFEF4399 /* MyToursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED31FB452A3556755B9F58 /* MyToursView.swift */; };
 		4AC55DF4D5D011943CFF2EA6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822066972339E6B5C61F9D2 /* ContentView.swift */; };
 		4B1068E4734569B355ADBA3A /* TourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCF38AE924D3C22CAE7862C /* TourViewModel.swift */; };
 		4C86BCD5B1B56578C263449B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570168D0462BF491CA793441 /* Preview Assets.xcassets */; };
 		504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44FFDBEC97D84BA60CA8F1C /* TourResultView.swift */; };
 		510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0535D6AD4BE274962EE40B59 /* TourSettings.swift */; };
+		5A7ADCEE927E957DD307C4F9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0970401E6D03010A6E04AA /* MainTabView.swift */; };
+		683616827C462CF6F460209A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC8BA1C1E6863F4B22E2236 /* MapKit.framework */; };
 		69E196A22A353829AE3E4566 /* CityTourUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86864D505B90536630599EFC /* CityTourUITests.swift */; };
 		734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE5F725A97002E31C3137A /* ClaudeService.swift */; };
+		8419E303F724D6E979ECF6AD /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFA20AACDB844A2E789494 /* StatisticsView.swift */; };
 		AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */; };
+		C07D4F9F62C28A85B74A6938 /* TourStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AEA683D12742D02620DCCF /* TourStore.swift */; };
 		D897810417C565C326971FAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE53C81147EBC37CF4B86ADC /* Assets.xcassets */; };
+		E73AA5418DE5286B001F5A64 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4A71BC5EF7AFD8311A8D50 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +40,10 @@
 /* Begin PBXFileReference section */
 		0535D6AD4BE274962EE40B59 /* TourSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettings.swift; sourceTree = "<group>"; };
 		1D9F934FBE56F818E31C60D6 /* TourSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourSettingsView.swift; sourceTree = "<group>"; };
+		1DD823708CA0D1D5AB23C8B5 /* GeneratedTour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedTour.swift; sourceTree = "<group>"; };
 		23FE5F725A97002E31C3137A /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
+		35CFA20AACDB844A2E789494 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		3CC8BA1C1E6863F4B22E2236 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		40FEC33F8B8C3FB84D721AAC /* CityTourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourApp.swift; sourceTree = "<group>"; };
 		52D0C22303B0A6A93885456B /* CityTour.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CityTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570168D0462BF491CA793441 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -41,11 +51,27 @@
 		86864D505B90536630599EFC /* CityTourUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTourUITests.swift; sourceTree = "<group>"; };
 		9C9E90B9545DC916B5643A34 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		AFCF38AE924D3C22CAE7862C /* TourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourViewModel.swift; sourceTree = "<group>"; };
+		B6AEA683D12742D02620DCCF /* TourStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourStore.swift; sourceTree = "<group>"; };
 		B7EB7D9F062F691EC8F2EEEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D44FFDBEC97D84BA60CA8F1C /* TourResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourResultView.swift; sourceTree = "<group>"; };
 		DE53C81147EBC37CF4B86ADC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF4A71BC5EF7AFD8311A8D50 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E0ED31FB452A3556755B9F58 /* MyToursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToursView.swift; sourceTree = "<group>"; };
 		F822066972339E6B5C61F9D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FB0970401E6D03010A6E04AA /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B04D09E2A33910882538FD9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				683616827C462CF6F460209A /* MapKit.framework in Frameworks */,
+				E73AA5418DE5286B001F5A64 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		002B789F707F7D94607DD8FC /* Resources */ = {
@@ -61,6 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				F822066972339E6B5C61F9D2 /* ContentView.swift */,
+				FB0970401E6D03010A6E04AA /* MainTabView.swift */,
+				E0ED31FB452A3556755B9F58 /* MyToursView.swift */,
+				35CFA20AACDB844A2E789494 /* StatisticsView.swift */,
 				D44FFDBEC97D84BA60CA8F1C /* TourResultView.swift */,
 				1D9F934FBE56F818E31C60D6 /* TourSettingsView.swift */,
 			);
@@ -70,6 +99,7 @@
 		2E768645003FC05DD6F229C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1DD823708CA0D1D5AB23C8B5 /* GeneratedTour.swift */,
 				0535D6AD4BE274962EE40B59 /* TourSettings.swift */,
 				AFCF38AE924D3C22CAE7862C /* TourViewModel.swift */,
 			);
@@ -81,6 +111,7 @@
 			children = (
 				9C9E90B9545DC916B5643A34 /* APIConfig.swift */,
 				23FE5F725A97002E31C3137A /* ClaudeService.swift */,
+				B6AEA683D12742D02620DCCF /* TourStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -107,8 +138,18 @@
 			children = (
 				FFC77C698FA7EC74F3540BB4 /* CityTour */,
 				9301C05D0151454491E94BF5 /* UITests */,
+				B4F4CF63804BAFBCC758874F /* Frameworks */,
 				788E18EC56736584932204D6 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		B4F4CF63804BAFBCC758874F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF4A71BC5EF7AFD8311A8D50 /* CoreLocation.framework */,
+				3CC8BA1C1E6863F4B22E2236 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CAB13969A5B7FDB8155F656A /* Preview Content */ = {
@@ -142,6 +183,7 @@
 			buildPhases = (
 				9599D7A3B343927EE99AF71D /* Sources */,
 				EEA5E0CB0A0DF3B337D101C5 /* Resources */,
+				B04D09E2A33910882538FD9B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -227,9 +269,14 @@
 				AFDC8EC935EDD8A71B2A5B71 /* CityTourApp.swift in Sources */,
 				734761ADE502132FF29D50FB /* ClaudeService.swift in Sources */,
 				4AC55DF4D5D011943CFF2EA6 /* ContentView.swift in Sources */,
+				02AEB5F744D85D2070383A23 /* GeneratedTour.swift in Sources */,
+				5A7ADCEE927E957DD307C4F9 /* MainTabView.swift in Sources */,
+				3D8C6985D18C849ABFEF4399 /* MyToursView.swift in Sources */,
+				8419E303F724D6E979ECF6AD /* StatisticsView.swift in Sources */,
 				504757A99E2E3CFB131F1C8A /* TourResultView.swift in Sources */,
 				510C7139D79031F7B93064B9 /* TourSettings.swift in Sources */,
 				04D6E2652580CF0FCE797CEE /* TourSettingsView.swift in Sources */,
+				C07D4F9F62C28A85B74A6938 /* TourStore.swift in Sources */,
 				4B1068E4734569B355ADBA3A /* TourViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

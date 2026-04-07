@@ -1,6 +1,6 @@
 import Foundation
 
-enum TourDuration: String, CaseIterable, Identifiable {
+enum TourDuration: String, CaseIterable, Identifiable, Codable {
     case twoHours = "2 часа"
     case halfDay = "Полдня (4 ч)"
     case fullDay = "Целый день (8 ч)"
@@ -16,9 +16,18 @@ enum TourDuration: String, CaseIterable, Identifiable {
         case .weekend: 16
         }
     }
+
+    var stopCount: Int {
+        switch self {
+        case .twoHours: 3
+        case .halfDay: 5
+        case .fullDay: 8
+        case .weekend: 12
+        }
+    }
 }
 
-enum TransportMode: String, CaseIterable, Identifiable {
+enum TransportMode: String, CaseIterable, Identifiable, Codable {
     case walking = "Пешком"
     case car = "На авто"
 
@@ -32,7 +41,7 @@ enum TransportMode: String, CaseIterable, Identifiable {
     }
 }
 
-struct TourSettings {
+struct TourSettings: Codable {
     var city: String = ""
     var duration: TourDuration = .halfDay
     var transport: TransportMode = .walking

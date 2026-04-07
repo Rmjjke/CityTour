@@ -2,8 +2,8 @@ import SwiftUI
 
 struct TourSettingsView: View {
     @Bindable var viewModel: TourViewModel
+    var onDismiss: (() -> Void)?
     @State private var navigateToResult = false
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
@@ -12,53 +12,47 @@ struct TourSettingsView: View {
             ScrollView {
                 VStack(spacing: 24) {
                     cityHeader
-
                     durationSection
-
                     transportSection
-
                     extrasSection
-
-                    generateButton
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
-                .padding(.bottom, 40)
+                .padding(.bottom, 16)
+            }
+            .safeAreaInset(edge: .bottom) {
+                generateButton
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(.ultraThinMaterial)
             }
         }
         .navigationTitle("Настройки тура")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .navigationBarBackButtonHidden(false)
         .navigationDestination(isPresented: $navigateToResult) {
-            TourResultView(viewModel: viewModel)
+            if let tour = viewModel.generatedTour {
+                TourResultView(tour: tour, onDismiss: onDismiss)
+            }
         }
         .task(id: viewModel.showResult) {
-            if viewModel.showResult {
-                navigateToResult = true
-            }
+            if viewModel.showResult { navigateToResult = true }
         }
     }
 
     private var backgroundGradient: some View {
         LinearGradient(
-            colors: [
-                Color(red: 0.05, green: 0.05, blue: 0.15),
-                Color(red: 0.08, green: 0.12, blue: 0.25)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
+            colors: [Color(red: 0.05, green: 0.05, blue: 0.15), Color(red: 0.08, green: 0.12, blue: 0.25)],
+            startPoint: .topLeading, endPoint: .bottomTrailing
         )
         .ignoresSafeArea()
     }
 
     private var cityHeader: some View {
         HStack {
-            Image(systemName: "location.fill")
-                .foregroundStyle(.cyan)
+            Image(systemName: "location.fill").foregroundStyle(.cyan)
             Text(viewModel.settings.city)
-                .font(.title2.bold())
-                .foregroundStyle(.white)
+                .font(.title2.bold()).foregroundStyle(.white)
             Spacer()
         }
         .padding(16)
@@ -70,10 +64,7 @@ struct TourSettingsView: View {
         SettingsSection(title: "Продолжительность", icon: "clock.fill") {
             VStack(spacing: 8) {
                 ForEach(TourDuration.allCases) { duration in
-                    DurationRow(
-                        duration: duration,
-                        isSelected: viewModel.settings.duration == duration
-                    ) {
+                    DurationRow(duration: duration, isSelected: viewModel.settings.duration == duration) {
                         viewModel.settings.duration = duration
                     }
                 }
@@ -85,10 +76,7 @@ struct TourSettingsView: View {
         SettingsSection(title: "Способ передвижения", icon: "arrow.triangle.swap") {
             HStack(spacing: 12) {
                 ForEach(TransportMode.allCases) { mode in
-                    TransportButton(
-                        mode: mode,
-                        isSelected: viewModel.settings.transport == mode
-                    ) {
+                    TransportButton(mode: mode, isSelected: viewModel.settings.transport == mode) {
                         viewModel.settings.transport = mode
                     }
                 }
@@ -99,21 +87,11 @@ struct TourSettingsView: View {
     private var extrasSection: some View {
         SettingsSection(title: "Дополнительно", icon: "slider.horizontal.3") {
             VStack(spacing: 0) {
-                ToggleRow(
-                    title: "Приёмы пищи",
-                    subtitle: "Кафе и рестораны в маршруте",
-                    icon: "fork.knife",
-                    isOn: $viewModel.settings.includeMeals
-                )
-
+                ToggleRow(title: "Приёмы пищи", subtitle: "Кафе и рестораны в маршруте",
+                          icon: "fork.knife", isOn: $viewModel.settings.includeMeals)
                 Divider().background(.white.opacity(0.1))
-
-                ToggleRow(
-                    title: "Путешествую с детьми",
-                    subtitle: "Детские места и активности",
-                    icon: "figure.and.child.holdinghands",
-                    isOn: $viewModel.settings.withChildren
-                )
+                ToggleRow(title: "Путешествую с детьми", subtitle: "Детские места и активности",
+                          icon: "figure.and.child.holdinghands", isOn: $viewModel.settings.withChildren)
             }
         }
     }
@@ -133,14 +111,11 @@ struct TourSettingsView: View {
             } label: {
                 HStack(spacing: 12) {
                     if viewModel.isLoading {
-                        ProgressView()
-                            .tint(.white)
-                            .scaleEffect(0.9)
+                        ProgressView().tint(.white).scaleEffect(0.9)
                         Text("Генерирую маршрут...")
                     } else {
                         Image(systemName: "sparkles")
-                        Text("Сгенерировать мой тур")
-                            .fontWeight(.bold)
+                        Text("Сгенерировать мой тур").fontWeight(.bold)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -159,6 +134,7 @@ struct TourSettingsView: View {
                 .shadow(color: viewModel.isLoading ? .clear : .cyan.opacity(0.4), radius: 16)
                 .animation(.easeInOut, value: viewModel.isLoading)
             }
+            .accessibilityIdentifier("generate_tour_button")
             .disabled(viewModel.isLoading)
         }
     }
@@ -174,14 +150,9 @@ struct SettingsSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 8) {
-                Image(systemName: icon)
-                    .foregroundStyle(.cyan)
-                    .font(.subheadline)
-                Text(title)
-                    .font(.headline)
-                    .foregroundStyle(.white)
+                Image(systemName: icon).foregroundStyle(.cyan).font(.subheadline)
+                Text(title).font(.headline).foregroundStyle(.white)
             }
-
             content
                 .padding(16)
                 .background(.white.opacity(0.06))
@@ -201,16 +172,9 @@ struct DurationRow: View {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundStyle(isSelected ? .cyan : .white.opacity(0.3))
                     .font(.title3)
-
-                Text(duration.rawValue)
-                    .foregroundStyle(.white)
-                    .font(.body)
-
+                Text(duration.rawValue).foregroundStyle(.white)
                 Spacer()
-
-                Text("\(duration.hours) ч")
-                    .foregroundStyle(.white.opacity(0.4))
-                    .font(.caption)
+                Text("\(duration.hours) ч").foregroundStyle(.white.opacity(0.4)).font(.caption)
             }
         }
     }
@@ -225,18 +189,14 @@ struct TransportButton: View {
         Button(action: onTap) {
             HStack {
                 Image(systemName: mode.icon)
-                Text(mode.rawValue)
-                    .fontWeight(.medium)
+                Text(mode.rawValue).fontWeight(.medium)
             }
             .frame(maxWidth: .infinity)
             .padding(14)
             .background(isSelected ? Color.cyan.opacity(0.2) : Color.white.opacity(0.06))
             .foregroundStyle(isSelected ? .cyan : .white.opacity(0.6))
             .clipShape(RoundedRectangle(cornerRadius: 14))
-            .overlay(
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(isSelected ? Color.cyan.opacity(0.6) : Color.clear, lineWidth: 1.5)
-            )
+            .overlay(RoundedRectangle(cornerRadius: 14).stroke(isSelected ? Color.cyan.opacity(0.6) : Color.clear, lineWidth: 1.5))
             .animation(.easeInOut(duration: 0.2), value: isSelected)
         }
     }
@@ -250,31 +210,14 @@ struct ToggleRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: icon)
-                .font(.title3)
-                .foregroundStyle(.cyan)
-                .frame(width: 28)
-
+            Image(systemName: icon).font(.title3).foregroundStyle(.cyan).frame(width: 28)
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .foregroundStyle(.white)
-                    .font(.body)
-                Text(subtitle)
-                    .foregroundStyle(.white.opacity(0.45))
-                    .font(.caption)
+                Text(title).foregroundStyle(.white)
+                Text(subtitle).foregroundStyle(.white.opacity(0.45)).font(.caption)
             }
-
             Spacer()
-
-            Toggle("", isOn: $isOn)
-                .tint(.cyan)
+            Toggle("", isOn: $isOn).tint(.cyan)
         }
         .padding(.vertical, 10)
-    }
-}
-
-#Preview {
-    NavigationStack {
-        TourSettingsView(viewModel: TourViewModel())
     }
 }

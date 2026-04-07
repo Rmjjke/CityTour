@@ -5,21 +5,27 @@ import Observation
 @MainActor
 final class TourViewModel {
     var settings = TourSettings()
-    var generatedTour: String = ""
+    var generatedTour: GeneratedTour?
     var isLoading = false
     var errorMessage: String?
     var showResult = false
 
     private let service = ClaudeService()
+    private let store: TourStore
+
+    init(store: TourStore) {
+        self.store = store
+    }
 
     func generateTour() async {
         isLoading = true
         errorMessage = nil
-        generatedTour = ""
+        generatedTour = nil
 
         do {
-            let result = try await service.generateTour(settings: settings)
-            generatedTour = result
+            let tour = try await service.generateTour(settings: settings)
+            generatedTour = tour
+            store.save(tour)
             showResult = true
         } catch {
             errorMessage = error.localizedDescription
@@ -30,7 +36,7 @@ final class TourViewModel {
 
     func reset() {
         showResult = false
-        generatedTour = ""
+        generatedTour = nil
         errorMessage = nil
     }
 }

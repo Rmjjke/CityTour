@@ -1,34 +1,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var viewModel = TourViewModel()
-    @State private var navigateToSettings = false
+    @Bindable var viewModel: TourViewModel
+    var onDismiss: (() -> Void)? = nil
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                backgroundGradient
+        ZStack {
+            backgroundGradient
 
-                VStack(spacing: 32) {
-                    Spacer()
+            VStack(spacing: 32) {
+                Spacer()
 
-                    headerSection
-
-                    citySearchSection
-
-                    if !viewModel.settings.city.isEmpty {
-                        continueButton
+                if onDismiss != nil {
+                    HStack {
+                        Button { onDismiss?() } label: {
+                            Image(systemName: "xmark")
+                                .font(.title3)
+                                .foregroundStyle(.white.opacity(0.6))
+                                .padding(10)
+                                .background(.white.opacity(0.08))
+                                .clipShape(Circle())
+                        }
+                        Spacer()
                     }
-
-                    Spacer()
-                    Spacer()
+                    .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 24)
-            }
-            .navigationDestination(isPresented: $navigateToSettings) {
-                TourSettingsView(viewModel: viewModel)
+
+                headerSection
+
+                citySearchSection
+                    .padding(.horizontal, 24)
+
+                if !viewModel.settings.city.isEmpty {
+                    continueButton
+                        .padding(.horizontal, 24)
+                }
+
+                Spacer()
+                Spacer()
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
     }
 
     private var backgroundGradient: some View {
@@ -48,11 +60,7 @@ struct ContentView: View {
             Image(systemName: "map.fill")
                 .font(.system(size: 56))
                 .foregroundStyle(
-                    LinearGradient(
-                        colors: [.cyan, .blue],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
+                    LinearGradient(colors: [.cyan, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
                 )
                 .shadow(color: .cyan.opacity(0.4), radius: 20)
 
@@ -77,59 +85,39 @@ struct ContentView: View {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.white.opacity(0.5))
 
-                TextField("", text: $viewModel.settings.city, prompt: Text("Введите город...").foregroundStyle(.white.opacity(0.35)))
+                TextField("", text: $viewModel.settings.city,
+                          prompt: Text("Введите город...").foregroundStyle(.white.opacity(0.35)))
                     .foregroundStyle(.white)
                     .autocorrectionDisabled()
-                    .onSubmit {
-                        if !viewModel.settings.city.isEmpty {
-                            navigateToSettings = true
-                        }
-                    }
 
                 if !viewModel.settings.city.isEmpty {
-                    Button {
-                        viewModel.settings.city = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.white.opacity(0.4))
+                    Button { viewModel.settings.city = "" } label: {
+                        Image(systemName: "xmark.circle.fill").foregroundStyle(.white.opacity(0.4))
                     }
                 }
             }
             .padding(16)
             .background(.white.opacity(0.08))
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(.white.opacity(0.12), lineWidth: 1)
-            )
+            .overlay(RoundedRectangle(cornerRadius: 16).stroke(.white.opacity(0.12), lineWidth: 1))
         }
     }
 
     private var continueButton: some View {
-        Button {
-            navigateToSettings = true
+        NavigationLink {
+            TourSettingsView(viewModel: viewModel, onDismiss: onDismiss)
         } label: {
             HStack {
-                Text("Настроить тур")
-                    .fontWeight(.semibold)
+                Text("Настроить тур").fontWeight(.semibold)
                 Image(systemName: "arrow.right")
             }
             .frame(maxWidth: .infinity)
             .padding(16)
-            .background(
-                LinearGradient(
-                    colors: [.cyan, .blue],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
+            .background(LinearGradient(colors: [.cyan, .blue], startPoint: .leading, endPoint: .trailing))
             .foregroundStyle(.white)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .shadow(color: .cyan.opacity(0.3), radius: 12)
         }
+        .accessibilityIdentifier("settings_button")
     }
-}
-
-#Preview {
-    ContentView()
 }

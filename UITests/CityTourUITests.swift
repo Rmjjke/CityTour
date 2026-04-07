@@ -11,54 +11,54 @@ final class CityTourUITests: XCTestCase {
     }
 
     func testGenerateBarcelonaTour() throws {
-        // 1. Type city name
+        // 1. Tap center Generate button
+        let generateBtn = app.buttons["generate_tab_button"]
+        XCTAssertTrue(generateBtn.waitForExistence(timeout: 5))
+        generateBtn.tap()
+        snapshot("01_sheet_open")
+
+        // 2. Type city
         let searchField = app.textFields.firstMatch
         XCTAssertTrue(searchField.waitForExistence(timeout: 5))
         searchField.tap()
         searchField.typeText("Барселона")
+        snapshot("02_city_typed")
 
-        // Screenshot: city entered
-        let screenshot1 = app.screenshot()
-        let attach1 = XCTAttachment(screenshot: screenshot1)
-        attach1.name = "01_city_entered"
-        attach1.lifetime = .keepAlways
-        add(attach1)
+        // 3. Tap settings button via coordinate (bypass keyboard interception)
+        let settingsBtn = app.buttons["settings_button"]
+        XCTAssertTrue(settingsBtn.waitForExistence(timeout: 5))
+        settingsBtn.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        snapshot("03_after_settings_tap")
 
-        // 2. Tap "Настроить тур"
-        let settingsButton = app.buttons["Настроить тур"]
-        XCTAssertTrue(settingsButton.waitForExistence(timeout: 3))
-        settingsButton.tap()
+        // 4. Wait for settings to load
+        Thread.sleep(forTimeInterval: 2)
+        snapshot("04_after_wait")
 
-        // Screenshot: settings screen
-        let screenshot2 = app.screenshot()
-        let attach2 = XCTAttachment(screenshot: screenshot2)
-        attach2.name = "02_settings_screen"
-        attach2.lifetime = .keepAlways
-        add(attach2)
+        // Debug: print all buttons
+        let allBtns = app.buttons.allElementsBoundByIndex
+        var btnLabels = ""
+        for btn in allBtns { btnLabels += "\(btn.identifier)|\(btn.label), " }
+        XCTContext.runActivity(named: "Buttons: \(btnLabels)") { _ in }
 
-        // 3. Tap generate button
-        let generateButton = app.buttons["Сгенерировать мой тур"]
-        XCTAssertTrue(generateButton.waitForExistence(timeout: 3))
-        generateButton.tap()
+        // 5. Find generate button
+        let generateTourBtn = app.buttons["generate_tour_button"]
+        XCTAssertTrue(generateTourBtn.waitForExistence(timeout: 10), "Generate tour button not found. Buttons: \(btnLabels)")
+        generateTourBtn.tap()
+        snapshot("05_loading")
 
-        // Screenshot: loading state
-        let screenshot3 = app.screenshot()
-        let attach3 = XCTAttachment(screenshot: screenshot3)
-        attach3.name = "03_loading"
-        attach3.lifetime = .keepAlways
-        add(attach3)
+        // 6. Wait for result
+        let resultBar = app.navigationBars["Ваш маршрут"]
+        let appeared = resultBar.waitForExistence(timeout: 120)
+        snapshot("06_result")
 
-        // 4. Wait for result (up to 120 seconds for API call)
-        let resultNavBar = app.navigationBars["Ваш маршрут"]
-        let appeared = resultNavBar.waitForExistence(timeout: 120)
+        XCTAssertTrue(appeared, "Tour result should appear")
+    }
 
-        // Screenshot: result
-        let screenshot4 = app.screenshot()
-        let attach4 = XCTAttachment(screenshot: screenshot4)
-        attach4.name = "04_result"
-        attach4.lifetime = .keepAlways
-        add(attach4)
-
-        XCTAssertTrue(appeared, "Tour result screen should appear after generation")
+    private func snapshot(_ name: String) {
+        guard app.exists else { return }
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 }
